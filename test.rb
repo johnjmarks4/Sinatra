@@ -7,20 +7,6 @@ get '/' do
   erb :index
 end
 
-@cipher = caesar_cipher(@message, @number.to_i)
-
-get '/submit' do
-  erb :index
-end
-
-def lower_case
-  ('a'..'z').to_a
-end
-
-def upper_case
-  lower_case.map { |letter| letter.upcase }
-end
-
 def caesar_cipher(text, letters_moved)
   text.scan(/./) do |character|
     if upper_case.include?(character)
@@ -39,4 +25,18 @@ def caesar_cipher(text, letters_moved)
     end
     text.sub!(character, alphabet[character_index])
   end
+end
+
+@cipher = caesar_cipher(@message, @number.to_i)
+
+get '/submit' do
+  erb :index
+end
+
+def lower_case
+  ('a'..'z').to_a
+end
+
+def upper_case
+  lower_case.map { |letter| letter.upcase }
 end
