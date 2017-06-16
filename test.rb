@@ -1,10 +1,12 @@
 require 'sinatra'
 require 'sinatra/reloader' if development?
 
-get '/' do
-	@message = params['message']
-  @number = params['number']
-  erb :index
+def lower_case
+  ('a'..'z').to_a
+end
+
+def upper_case
+  lower_case.map { |letter| letter.upcase }
 end
 
 def caesar_cipher(text, letters_moved)
@@ -27,16 +29,13 @@ def caesar_cipher(text, letters_moved)
   end
 end
 
-@cipher = caesar_cipher(@message, @number.to_i)
-
-get '/submit' do
+get '/' do
   erb :index
 end
 
-def lower_case
-  ('a'..'z').to_a
-end
-
-def upper_case
-  lower_case.map { |letter| letter.upcase }
+get '/submit' do
+	@message = params['message']
+  @number = params['number']
+	@cipher = caesar_cipher(@message, @number.to_i)
+  erb :index
 end
