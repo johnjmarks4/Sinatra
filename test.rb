@@ -5,7 +5,7 @@ get '/' do
   message = params['message']
   number = params['number']
   #cipher = caesar_cipher(message, number.to_i)
-  erb :index
+  erb :index, :locals {:message => message}
 end
 
 def lower_case
