@@ -2,15 +2,14 @@ require 'sinatra'
 require 'sinatra/reloader' if development?
 
 get '/' do
-	throw params.inspect
+	@message = params['message']
+  @number = params['number']
   erb :index
 end
 
+@cipher = caesar_cipher(@message, @number.to_i)
+
 get '/submit' do
-	@message = params['message']
-  @number = params['number']
-  @cipher = caesar_cipher(@message, @number.to_i)
-  throw params.inspect
   erb :index
 end
 
