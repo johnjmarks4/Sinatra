@@ -6,10 +6,10 @@ get '/' do
 end
 
 get '/submit' do
-	message = params['message']
-  number = params['number']
-  cipher = caesar_cipher(message, number.to_i)
-  erb :index, :locals => {:cipher => cipher}
+	@message = params['message']
+  @number = params['number']
+  @cipher = caesar_cipher(@message, @number.to_i)
+  erb :index
 end
 
 def lower_case
