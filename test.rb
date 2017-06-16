@@ -33,10 +33,9 @@ get '/' do
   erb :index
 end
 
-get '/submit' do
+get '/message' do
 	@message = params['message']
   @number = params['number']
 	@cipher = caesar_cipher(@message, @number.to_i)
-	throw params.inspect
   erb :index
 end
