@@ -2,10 +2,14 @@ require 'sinatra'
 require 'sinatra/reloader' if development?
 
 get '/' do
-  message = params['message']
+  erb :index
+end
+
+get '/submit' do
+	message = params['message']
   number = params['number']
-  #cipher = caesar_cipher(message, number.to_i)
-  erb :index, :locals => {:message => message}
+  cipher = caesar_cipher(message, number.to_i)
+  erb :index, :locals => {:cipher => cipher}
 end
 
 def lower_case
@@ -17,7 +21,8 @@ def upper_case
 end
 
 def caesar_cipher(text, letters_moved)
-  text.scan(/./) do |character|
+  text.scan(/./) do |char
+  	acter|
     if upper_case.include?(character)
       character_index = upper_case.index(character) + letters_moved
       alphabet = upper_case
