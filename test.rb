@@ -21,8 +21,7 @@ def upper_case
 end
 
 def caesar_cipher(text, letters_moved)
-  text.scan(/./) do |char
-  	acter|
+  text.scan(/./) do |character|
     if upper_case.include?(character)
       character_index = upper_case.index(character) + letters_moved
       alphabet = upper_case
