@@ -2,8 +2,8 @@ require 'sinatra'
 require 'sinatra/reloader' if development?
 
 get '/' do
-  #message = params['message']
-  #number = params['number']
+  message = params['message']
+  number = params['number']
   #cipher = caesar_cipher(message, number.to_i)
   erb :index
 end
